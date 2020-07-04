@@ -10,8 +10,11 @@ public class SimpleFactory {
     @Value("${hello:yes}")
     private String hello;
 
+    @Value("${keytest:yes}")
+    private String keytest;
+
     public SimpleFactory() {
-        System.out.println("ma+hello:"+mq+ "----" +hello);
+        System.out.println("mq+hello+keytest:"+mq+ "----" +hello+ "----" +keytest);
     }
 
     public void getFactory(){
