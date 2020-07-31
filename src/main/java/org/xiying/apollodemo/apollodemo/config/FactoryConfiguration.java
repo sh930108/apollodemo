@@ -17,6 +17,25 @@ public class FactoryConfiguration {
     private Config config;
     @Value("${hello:yes}")
     private String helloAtValue;
+    @Value("${spring.application.name:yes}")
+    private String key1;
+    @Value("${test.hello:yes}")
+    private String key2;
+    @Value("${amq.ip:yes}")
+    private String key3;
+    @Value("${management.health.status.order:yes}")
+    private String key4;
+    @Value("${test:yes}")
+    private String key5;
+    @Value("${profile:yes}")
+    private String key6;
+    @Value("${container.image.repository:yes}")
+    private String key7;
+    @Value("${commitId:yes}")
+    private String key8;
+    @Value("${hello.test:yes}")
+    private String key9;
+
 
     @Bean
     public SimpleFactory getSimpleFactory(){
@@ -32,7 +51,21 @@ public class FactoryConfiguration {
         System.out.println("helloAtValue:"+helloAtValue);
         System.out.println("==================================");
 
-
+        System.out.println("==================================");
+        System.out.println("key1:"+key1);
+        System.out.println("key2:"+key2);
+        System.out.println("key3:"+key3);
+        System.out.println("key4:"+key4);
+        System.out.println("key5:"+key5);
+        System.out.println("==================================");
+        System.out.println("key6:"+key6);
+        System.out.println("key7:"+key7);
+        System.out.println("key8:"+key8);
+        System.out.println("key9:"+key9);
+        System.out.println("==================================");
         return simpleFactory;
     }
+
+
+
 }
