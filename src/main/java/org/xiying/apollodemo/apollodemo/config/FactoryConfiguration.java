@@ -27,13 +27,13 @@ public class FactoryConfiguration {
     private String key4;
     @Value("${test:yes}")
     private String key5;
-    @Value("${profile:yes}")
+    @Value("${middleware.postgresql.port:yes}")
     private String key6;
-    @Value("${container.image.repository:yes}")
+    @Value("${middleware.postgresql.host:yes}")
     private String key7;
-    @Value("${commitId:yes}")
+    @Value("${middleware.consul.host:yes}")
     private String key8;
-    @Value("${hello.test:yes}")
+    @Value("${middleware.consul.port:yes}")
     private String key9;
 
 

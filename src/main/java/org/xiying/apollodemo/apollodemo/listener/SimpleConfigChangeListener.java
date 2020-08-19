@@ -5,6 +5,11 @@ import com.ctrip.framework.apollo.ConfigChangeListener;
 import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 
+/**
+ * 热部署 配置监听处理类
+ *
+ * @author shanghao5
+ */
 public class SimpleConfigChangeListener implements ConfigChangeListener {
 
     @Override
