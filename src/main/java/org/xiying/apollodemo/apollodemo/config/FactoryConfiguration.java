@@ -3,69 +3,43 @@ package org.xiying.apollodemo.apollodemo.config;
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.xiying.apollodemo.apollodemo.factory.SimpleFactory;
 import org.xiying.apollodemo.apollodemo.listener.SimpleConfigChangeListener;
 
+/**
+ * 配置类
+ *
+ * @author shanghao5
+ */
 @Configuration
-@EnableApolloConfig
 public class FactoryConfiguration {
 
-    private Config config;
-    @Value("${hello:yes}")
-    private String helloAtValue;
-    @Value("${spring.application.name:yes}")
-    private String key1;
-    @Value("${test.hello:yes}")
-    private String key2;
-    @Value("${amq.ip:yes}")
-    private String key3;
-    @Value("${management.health.status.order:yes}")
-    private String key4;
-    @Value("${test:yes}")
-    private String key5;
-    @Value("${middleware.postgresql.port:yes}")
-    private String key6;
-    @Value("${middleware.postgresql.host:yes}")
-    private String key7;
     @Value("${middleware.consul.host:yes}")
-    private String key8;
-    @Value("${middleware.consul.port:yes}")
-    private String key9;
-
+    private String key1;
+    @Value("${feign.client.url:yes}")
+    private String key2;
 
     @Bean
     public SimpleFactory getSimpleFactory(){
-        config = ConfigService.getAppConfig();
+        Config config = ConfigService.getConfig("values.yaml");
         config.addChangeListener(new SimpleConfigChangeListener());
-        String hello = config.getProperty("hello", "");
-        String mq = config.getProperty("mq", "");
-        System.out.println("hello:"+hello);
-        System.out.println("mq:"+mq);
-        System.out.println("==================================");
-        SimpleFactory simpleFactory = new SimpleFactory();
-        System.out.println("==================================");
-        System.out.println("helloAtValue:"+helloAtValue);
-        System.out.println("==================================");
 
-        System.out.println("==================================");
-        System.out.println("key1:"+key1);
-        System.out.println("key2:"+key2);
-        System.out.println("key3:"+key3);
-        System.out.println("key4:"+key4);
-        System.out.println("key5:"+key5);
-        System.out.println("==================================");
-        System.out.println("key6:"+key6);
-        System.out.println("key7:"+key7);
-        System.out.println("key8:"+key8);
-        System.out.println("key9:"+key9);
-        System.out.println("==================================");
+        // 使用configService 获取
+        String s = config.getProperty("feign.client.url", "127.0.0.1");
+        System.out.println(s);
+
+        // 环境变量方式获取
+        SimpleFactory simpleFactory = SimpleFactory.builder()
+                .host(key1)
+                .url(key2)
+                .build();
+        System.out.println("[factory]:"+new Gson().toJson(simpleFactory));
         return simpleFactory;
     }
-
 
 
 }

@@ -1,23 +1,21 @@
 package org.xiying.apollodemo.apollodemo.factory;
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+/**
+ * 示例简单实体
+ *
+ * @author shanghao5
+ */
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SimpleFactory {
-
-    @Value("${mq:mq}")
-    private String mq;
-
-    @Value("${hello:yes}")
-    private String hello;
-
-    @Value("${keytest:yes}")
-    private String keytest;
-
-    public SimpleFactory() {
-        System.out.println("mq+hello+keytest:"+mq+ "----" +hello+ "----" +keytest);
-    }
-
-    public void getFactory(){
-        System.out.println("ma+hello:"+mq+ "----" +hello);
-    }
+    private String host;
+    private String url;
+    private String port;
 }
