@@ -22,6 +22,8 @@ public class FactoryConfiguration {
     private String key1;
     @Value("${feign.client.url:yes}")
     private String key2;
+    @Value("${amq.server:yes}")
+    private String key3;
 
     @Bean
     public SimpleFactory getSimpleFactory(){
@@ -38,6 +40,7 @@ public class FactoryConfiguration {
                 .url(key2)
                 .build();
         System.out.println("[factory]:"+new Gson().toJson(simpleFactory));
+        System.out.println("amq.server:"+key3);
         return simpleFactory;
     }
 
